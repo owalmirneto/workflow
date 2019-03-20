@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Finish a feature from card trello.
+#
+# Usage
+#
+#       $ bin/finish_feature <trello-slug-card>
+#
+# Example
+#
+#       $ bin/finish_feature 000-criar-tela-de-login
+
+set -e
+
+TRELLO_SLUG_CARD=${1}
+FEATURE_NAME=card-$TRELLO_SLUG_CARD
+
+git flow feature finish $FEATURE_NAME
