@@ -1,0 +1,6 @@
+Version 0.1.0
+ - Cria arquivos para gerenciar releases
+ - Cria arquivos para gerenciar features
+ - Cria arquivo de iniciar o git flow
+ - Initial commit
+
