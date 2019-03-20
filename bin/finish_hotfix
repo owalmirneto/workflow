@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Finish a hotfix from card trello.
+#
+# Usage
+#
+#       $ bin/finish_hotfix <hotfix-version>
+#
+# Example
+#
+#       $ bin/finish_hotfix v0.0.2
+
+set -e
+
+HOTFIX_NAME=${1}
+
+bin/bumpversion
+git flow hotfix finish $HOTFIX_NAME
+git push --tags
+git push origin develop
+git push origin master

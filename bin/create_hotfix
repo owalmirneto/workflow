@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Create a hotfix.
+#
+# Usage
+#
+#       $ bin/create_hotfix <hotfix-version>
+#
+# Example
+#
+#       $ bin/create_hotfix v0.0.2
+
+set -e
+
+HOTFIX_NAME=${1}
+
+git flow hotfix start $HOTFIX_NAME
