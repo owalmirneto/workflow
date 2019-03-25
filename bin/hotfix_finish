@@ -1,15 +1,5 @@
 #!/bin/bash
 
-# Finish a hotfix from card trello.
-#
-# Usage
-#
-#       $ bin/finish_hotfix <hotfix-version>
-#
-# Example
-#
-#       $ bin/finish_hotfix v0.0.2
-
 set -e
 
 bin/ci
