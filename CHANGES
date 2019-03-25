@@ -1,3 +1,9 @@
+Version 0.0.4:
+ - Adiciona bin/ci
+ - Remove a documentação dos arquivos da pasta bin
+ - Add script pra setup de ambiente local
+ - Renomea arquivos do git flow
+
 Version 0.0.3:
  - Tagging versão 0.0.2
  - Cria arquivos para gerenciar hotfixes
