@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "# Adiciona scripts do interage/git-flow ao PATH" >> ~/.bashrc
+echo "export PATH="'$PATH'":$PWD/bin" >> ~/.bashrc
