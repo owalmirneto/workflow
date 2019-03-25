@@ -8,12 +8,14 @@
 #
 # Example
 #
-#       $ bin/finish_feature 000-criar-tela-de-login
+#       $ bin/finish_feature 000-titulo-do-card
 
 set -e
+
+bin/ci
 
 TRELLO_SLUG_CARD=${1}
 FEATURE_NAME=card-$TRELLO_SLUG_CARD
 
-git flow feature finish $FEATURE_NAME
+git flow feature finish -Fp $FEATURE_NAME
 git push origin develop

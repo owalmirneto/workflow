@@ -12,10 +12,9 @@
 
 set -e
 
+bin/ci
+
 HOTFIX_NAME=${1}
 
 bin/bumpversion
-git flow hotfix finish $HOTFIX_NAME
-git push --tags
-git push origin develop
-git push origin master
+git flow hotfix finish -Fp $HOTFIX_NAME
