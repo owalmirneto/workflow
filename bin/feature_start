@@ -8,7 +8,7 @@
 #
 # Example
 #
-#       $ bin/create_feature 000-criar-tela-de-login
+#       $ bin/create_feature 000-titulo-do-card
 
 set -e
 

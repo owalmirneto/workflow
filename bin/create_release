@@ -12,13 +12,11 @@
 
 set -e
 
+bin/ci
+
 RELEASE_VERSION=${1}
 COMMIT_HASH=${2}
 
 git flow release start $RELEASE_VERSION $COMMIT_HASH
 bin/bumpversion
-git flow release finish $RELEASE_VERSION $COMMIT_HASH
-git push --tags
-git push origin develop
-git checkout master && git merge develop
-git push origin master
+git flow release finish -Fp $RELEASE_VERSION $COMMIT_HASH
