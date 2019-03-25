@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# Start git flow.
-#
-# Usage
-#
-#     $ bin/init_flow
-
 set -e
 
-git flow init -d
+git flow init -d -f

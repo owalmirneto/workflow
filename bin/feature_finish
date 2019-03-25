@@ -1,15 +1,5 @@
 #!/bin/bash
 
-# Finish a feature from card trello.
-#
-# Usage
-#
-#       $ bin/finish_feature <trello-slug-card>
-#
-# Example
-#
-#       $ bin/finish_feature 000-titulo-do-card
-
 set -e
 
 bin/ci

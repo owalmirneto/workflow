@@ -6,18 +6,46 @@ E depois:
 
     $ source ~/.bashrc
 
+### Configurar flow na aplicação
+
+    $ init_flow
+
 #### Começar desenvolvimento de uma nova feature
 
-    $ create_feature <path do card>
+    $ feature_start <path-trello-card>
 
 Exemplo:
 
-    $ create_feature 578-aceitar-anexos-em-formato-pdf
+    $ feature_start 000-titulo-do-card
 
 #### Finalizar desenvolvimento de uma feature
 
-    $ finish_feature <path do card>
+    $ feature_finish <path-trello-card>
 
 Exemplo:
 
-    $ finish_feature 578-aceitar-anexos-em-formato-pdf
+    $ feature_finish 000-titulo-do-card
+
+#### Criar uma nova versão do projeto
+
+    $ create_release <release-version> <commit-hash>
+
+Exemplo:
+
+    $ create_release v0.0.1
+
+#### Começar desenvolvimento de um hotfix
+
+    $ hotfix_start <hotfix-version>
+
+Exemplo:
+
+    $ hotfix_start v0.0.2
+
+#### Finalizar desenvolvimento de um hotfix
+
+    $ hotfix_finish <hotfix-version>
+
+Exemplo:
+
+    $ hotfix_finish v0.0.2
