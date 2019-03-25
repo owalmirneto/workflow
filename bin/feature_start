@@ -1,15 +1,5 @@
 #!/bin/bash
 
-# Create a feature from card trello.
-#
-# Usage
-#
-#       $ bin/create_feature <trello-slug-card>
-#
-# Example
-#
-#       $ bin/create_feature 000-titulo-do-card
-
 set -e
 
 TRELLO_SLUG_CARD=${1}

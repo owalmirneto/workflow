@@ -1,15 +1,5 @@
 #!/bin/bash
 
-# Create a release.
-#
-# Usage
-#
-#       $ bin/create_release <release-version> <commit-hash>
-#
-# Example
-#
-#       $ bin/create_release v0.0.1
-
 set -e
 
 bin/ci

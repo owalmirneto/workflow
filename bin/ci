@@ -2,4 +2,4 @@
 
 set -e
 
-git flow init -d -f
+echo 'CI simulator'
