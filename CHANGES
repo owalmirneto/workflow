@@ -1,3 +1,6 @@
+Version 0.0.5:
+ - atualiza branches depois de criar uma versão
+
 Version 0.0.4:
  - Adiciona bin/ci
  - Remove a documentação dos arquivos da pasta bin
