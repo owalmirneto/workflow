@@ -8,6 +8,6 @@ RELEASE_VERSION=${1}
 COMMIT_HASH=${2}
 
 git flow release start $RELEASE_VERSION $COMMIT_HASH
-bin/bumpversion
+bumpversion
 git flow release finish -Fp $RELEASE_VERSION $COMMIT_HASH
 git checkout master && git merge develop && git push origin master
