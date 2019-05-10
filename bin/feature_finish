@@ -2,10 +2,15 @@
 
 set -e
 
-bin/ci
-
 TRELLO_SLUG_CARD=${1}
 FEATURE_NAME=card-$TRELLO_SLUG_CARD
+BRANCH_NAME=feature/$FEATURE_NAME
 
+echo -e "\e[1;36m$ git checkout $BRANCH_NAME \e[0m"
+git checkout $BRANCH_NAME
+
+bin/ci
+
+echo -e "\e[1;36m$ git flow feature finish -Fr $FEATURE_NAME \e[0m"
 git flow feature finish -Fr $FEATURE_NAME
 git push origin develop
