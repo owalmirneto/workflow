@@ -1,51 +1,101 @@
 ### Setup
 
-    $ bin/setup
+```bash
+bin/setup
+```
 
 E depois:
 
-    $ source ~/.bashrc
+```bash
+source ~/.bashrc
+```
 
 ### Configurar flow na aplicação
 
-    $ init_flow
+```bash
+init_flow
+```
 
 #### Começar desenvolvimento de uma nova feature
 
-    $ feature_start <path-trello-card>
+```bash
+feature_start <path-trello-card>
+```
 
 Exemplo:
 
-    $ feature_start 000-titulo-do-card
+```bash
+feature_start 000-titulo-do-card
+```
 
 #### Finalizar desenvolvimento de uma feature
 
-    $ feature_finish <path-trello-card>
+```bash
+feature_finish <path-trello-card>
+```
 
 Exemplo:
 
-    $ feature_finish 000-titulo-do-card
+```bash
+feature_finish 000-titulo-do-card
+```
+
+#### Começar uma nova versão do projeto
+
+```bash
+release_start <release-version> <commit-hash>
+```
+
+Exemplo:
+
+```bash
+release_start v0.0.1
+```
+
+#### Finalizar uma nova versão do projeto
+
+```bash
+release_finish <release-version>
+```
+
+Exemplo:
+
+```bash
+release_finish v0.0.1
+```
 
 #### Criar uma nova versão do projeto
 
-    $ create_release <release-version> <commit-hash>
+```bash
+create_release <release-version> <commit-hash>
+```
 
 Exemplo:
 
-    $ create_release v0.0.1
+```bash
+create_release v0.0.1
+```
 
 #### Começar desenvolvimento de um hotfix
 
-    $ hotfix_start <hotfix-version>
+```bash
+hotfix_start <hotfix-version>
+```
 
 Exemplo:
 
-    $ hotfix_start v0.0.2
+```bash
+hotfix_start v0.0.2
+```
 
 #### Finalizar desenvolvimento de um hotfix
 
-    $ hotfix_finish <hotfix-version>
+```bash
+hotfix_finish <hotfix-version>
+```
 
 Exemplo:
 
-    $ hotfix_finish v0.0.2
+```bash
+hotfix_finish v0.0.2
+```

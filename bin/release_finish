@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -e
+
+bin/ci
+
+RELEASE_VERSION=${1}
+
+echo -e "\e[1;36m$ bumpversion \e[0m"
+bumpversion
+
+echo -e "\e[1;36m$ git flow release finish -Fp $RELEASE_VERSION \e[0m"
+git flow release finish -Fp $RELEASE_VERSION
+
+echo -e "\e[1;36m$ git checkout master && git merge develop && git push origin master \e[0m"
+git checkout master && git merge develop && git push origin master
