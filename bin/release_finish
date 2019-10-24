@@ -12,5 +12,5 @@ bumpversion
 echo -e "\e[1;36m$ git flow release finish -Fp $RELEASE_VERSION \e[0m"
 git flow release finish -Fp $RELEASE_VERSION
 
-echo -e "\e[1;36m$ git checkout master && git merge develop && git push origin master \e[0m"
-git checkout master && git merge develop && git push origin master
+# echo -e "\e[1;36m$ git checkout master && git merge develop && git push origin master \e[0m"
+# git checkout master && git merge develop && git push origin master

@@ -2,8 +2,6 @@
 
 set -e
 
-bin/ci
-
 RELEASE_VERSION=${1}
 COMMIT_HASH=${2}
 
