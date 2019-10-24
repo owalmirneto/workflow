@@ -1,3 +1,6 @@
+### Requerimentos
+  - [git-flow plugin](https://danielkummer.github.io/git-flow-cheatsheet/index.pt_BR.html)
+
 ### Setup
 
 ```bash
