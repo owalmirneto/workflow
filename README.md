@@ -13,7 +13,7 @@ source ~/.bashrc
 ### Configurar flow na aplicação
 
 ```bash
-init_flow
+flow_init
 ```
 
 #### Começar desenvolvimento de uma nova feature
