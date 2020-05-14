@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-set -e
+set -e;
 
-echo "# Adiciona scripts do interage/git-flow ao PATH" >> ~/.bashrc
-echo "export PATH="'$PATH'":$PWD/bin" >> ~/.bashrc
+source $(dirname "$0")/functions;
+
+echo "# Adiciona scripts do interage/git-flow ao PATH" >> ~/.bashrc;
+echo "export PATH="'$PATH'":$PWD/bin" >> ~/.bashrc;
+
+success_message The path setted;
