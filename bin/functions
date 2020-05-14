@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+execute() { execute_message $@; "$@"; }
+
+execute_message() { message "\e[1;36m$ $@\e[0m"; }
+
+success_message() { message "\n\e[1;32m> $@\e[0m"; }
+
+info_message() { message "\e[1;34m> $@\e[0m"; }
+
+message() { echo -e "$@"; }
