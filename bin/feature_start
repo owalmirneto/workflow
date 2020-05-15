@@ -1,8 +1,10 @@
 #!/bin/bash
 
-set -e
+set -e;
 
-TRELLO_SLUG_CARD=${1}
-FEATURE_NAME=card-$TRELLO_SLUG_CARD
+source $(dirname "$0")/functions;
 
-git flow feature start $FEATURE_NAME
+TRELLO_SLUG_CARD=${1};
+FEATURE_NAME=card-$TRELLO_SLUG_CARD;
+
+execute git flow feature start $FEATURE_NAME;
