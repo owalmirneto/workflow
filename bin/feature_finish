@@ -2,7 +2,7 @@
 
 set -e;
 
-source $(dirname "$0")/functions;
+source functions;
 
 TRELLO_SLUG_CARD=${1};
 FEATURE_NAME=card-$TRELLO_SLUG_CARD;
@@ -12,8 +12,14 @@ execute git checkout $BRANCH_NAME;
 
 test -f bin/ci && execute bin/ci;
 
-execute git flow feature finish $FEATURE_NAME --fetch --rebase --keep --nopush --showcommands;
+execute git fetch origin develop:develop;
+
+execute git rebase develop;
+
+execute git flow feature finish $FEATURE_NAME --fetch --keep --showcommands;
 
 execute git push origin develop;
 
 execute git flow feature delete $FEATURE_NAME --remote --showcommands;
+
+success_message Feature finished successfully.;

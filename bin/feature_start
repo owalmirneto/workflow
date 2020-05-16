@@ -2,9 +2,13 @@
 
 set -e;
 
-source $(dirname "$0")/functions;
+source functions;
 
 TRELLO_SLUG_CARD=${1};
 FEATURE_NAME=card-$TRELLO_SLUG_CARD;
 
+execute git pull origin develop:develop;
+
 execute git flow feature start $FEATURE_NAME;
+
+success_message Feature started successfully.;
