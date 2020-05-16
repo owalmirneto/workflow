@@ -1,9 +1,15 @@
 #!/bin/bash
 
-set -e
+set -e;
 
-RELEASE_VERSION=${1}
-COMMIT_HASH=${2}
+source functions;
 
-echo -e "\e[1;36m$ git flow release start $RELEASE_VERSION $COMMIT_HASH \e[0m"
-git flow release start $RELEASE_VERSION $COMMIT_HASH
+RELEASE_VERSION=${1};
+[[ "${1}" = '' ]] && RELEASE_VERSION=`next_version`;
+COMMIT_HASH=${2};
+
+execute git pull origin develop:develop;
+
+execute git flow release start v$RELEASE_VERSION $COMMIT_HASH --showcommands;
+
+success_message Release started successfully.;

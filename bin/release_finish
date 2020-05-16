@@ -1,16 +1,23 @@
 #!/bin/bash
 
-set -e
+set -e;
 
-bin/ci
+source functions;
 
-RELEASE_VERSION=${1}
+RELEASE_VERSION=${1};
+if [ "${RELEASE_VERSION}" = '' ]; then
+  CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD`;
+  RELEASE_VERSION=${CURRENT_BRANCH##*/v};
+fi
 
-echo -e "\e[1;36m$ bumpversion \e[0m"
-bumpversion
+PROJECT_NAME=$(basename -s .git `git config --get remote.origin.url`);
 
-echo -e "\e[1;36m$ git flow release finish -Fp $RELEASE_VERSION \e[0m"
-git flow release finish -Fp $RELEASE_VERSION
+test -f bin/ci && execute bin/ci;
 
-# echo -e "\e[1;36m$ git checkout master && git merge develop && git push origin master \e[0m"
-# git checkout master && git merge develop && git push origin master
+execute bumpversion minor;
+
+execute git flow release finish v$RELEASE_VERSION --message="'${PROJECT_NAME^^}'" --showcommands;
+
+execute git push origin master develop v$RELEASE_VERSION;
+
+success_message Release finished successfully.;
