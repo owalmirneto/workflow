@@ -1,3 +1,16 @@
+Version 0.1.0:
+ - Ajusta scripts de criar novas versões
+ - Ajusta scripts de criar e fechar feature
+ - Ajusta scripts de criar e fechar hotfix
+ - Ajusta gerador do arquivo de versão e changelog
+ - Adiciona mensagem de sucesso no fim do script
+ - Ajusta binario do setup do projeto
+ - Ajusta binarios de criar e fechar uma feature
+ - Ajusta binário do init
+ - Adiciona metodos de mensagens
+ - Remove binário do CI
+ - Ajusta binário do setup
+
 Version 0.0.5:
  - atualiza branches depois de criar uma versão
 
