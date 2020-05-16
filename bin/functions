@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-execute() { execute_message $@; "$@"; }
+execute() { execute_message $@; $@; }
 
 execute_message() { message "\e[1;36m$ $@\e[0m"; }
 
@@ -8,4 +8,72 @@ success_message() { message "\n\e[1;32m> $@\e[0m"; }
 
 info_message() { message "\e[1;34m> $@\e[0m"; }
 
-message() { echo -e "$@"; }
+message() { echo -e $@; }
+
+allow_commands() {
+  COMMAND=$1;
+  ARGS=$(echo $2 | tr "," "\n");
+
+  info_message Use one of the commands below:;
+  declare -i i=0;
+  for ARG in $ARGS; do
+    i=$(( i + 1 ));
+    COMMAND_LIST[$i]="$COMMAND ${ARG}";
+    message "- Type ${i} for \e[1;36m$ ${COMMAND_LIST[${i}]}\e[0m";
+  done
+
+  while [ "${COMMAND_LIST[$COMMAND_NUMBER]}" == '' ]; do
+    read -ep 'Enter the command number: ' COMMAND_NUMBER;
+  done
+
+  ${COMMAND_LIST[$COMMAND_NUMBER]};
+
+  exit;
+}
+
+last_version() {
+  LAST_VERSION=${1};
+  test -f VERSION && LAST_VERSION=`cat VERSION`;
+  [[ "${LAST_VERSION}" = '' ]] && LAST_VERSION='0.0.0';
+
+  echo $LAST_VERSION;
+}
+
+next_version() {
+  LAST_VERSION=`last_version ${1}`
+
+  V_TYPE=${2};
+  [[ "${2}" = '' ]] && V_TYPE='minor';
+
+  BASE_LIST=(`echo $LAST_VERSION | tr '.' ' '`);
+  V_MAJOR=${BASE_LIST[0]};
+  V_MINOR=${BASE_LIST[1]};
+  V_PATCH=${BASE_LIST[2]};
+
+  if [ "$V_TYPE" == 'major' ]; then
+    V_MAJOR=$((V_MAJOR + 1));
+    V_MINOR=0;
+    V_PATCH=0;
+  elif [ "$V_TYPE" == 'patch' ]; then
+    V_PATCH=$((V_PATCH + 1));
+  elif [ "$V_TYPE" == 'minor' ]; then
+    V_MINOR=$((V_MINOR + 1));
+    V_PATCH=0;
+  fi
+
+  echo "$V_MAJOR.$V_MINOR.$V_PATCH";
+}
+
+add_bump_files() {
+  NEW_VERSION=${1};
+  LAST_VERSION=${2};
+
+  echo $NEW_VERSION > VERSION;
+  echo "Version ${NEW_VERSION}:" > tmpfile;
+  git log master...HEAD --pretty=format:" - %s" --no-merges >> tmpfile;
+  echo "" >> tmpfile;
+  echo "" >> tmpfile;
+  cat CHANGES >> tmpfile;
+  mv tmpfile CHANGES;
+  git add VERSION CHANGES;
+}
