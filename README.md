@@ -52,7 +52,7 @@ release_start <release-version> <commit-hash>
 Exemplo:
 
 ```bash
-release_start v0.0.1
+release_start
 ```
 
 #### Finalizar uma nova versão do projeto
@@ -64,7 +64,7 @@ release_finish <release-version>
 Exemplo:
 
 ```bash
-release_finish v0.0.1
+release_finish
 ```
 
 #### Criar uma nova versão do projeto
@@ -76,7 +76,7 @@ create_release <release-version> <commit-hash>
 Exemplo:
 
 ```bash
-create_release v0.0.1
+create_release
 ```
 
 #### Começar desenvolvimento de um hotfix
@@ -88,7 +88,7 @@ hotfix_start <hotfix-version>
 Exemplo:
 
 ```bash
-hotfix_start v0.0.2
+hotfix_start
 ```
 
 #### Finalizar desenvolvimento de um hotfix
@@ -100,5 +100,5 @@ hotfix_finish <hotfix-version>
 Exemplo:
 
 ```bash
-hotfix_finish v0.0.2
+hotfix_finish
 ```
