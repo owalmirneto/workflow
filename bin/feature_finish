@@ -1,16 +1,25 @@
 #!/bin/bash
 
-set -e
+set -e;
 
-TRELLO_SLUG_CARD=${1}
-FEATURE_NAME=card-$TRELLO_SLUG_CARD
-BRANCH_NAME=feature/$FEATURE_NAME
+source functions;
 
-echo -e "\e[1;36m$ git checkout $BRANCH_NAME \e[0m"
-git checkout $BRANCH_NAME
+TRELLO_SLUG_CARD=${1};
+FEATURE_NAME=card-$TRELLO_SLUG_CARD;
+BRANCH_NAME=feature/$FEATURE_NAME;
 
-bin/ci
+execute git checkout $BRANCH_NAME;
 
-echo -e "\e[1;36m$ git flow feature finish -Fr $FEATURE_NAME \e[0m"
-git flow feature finish -Fr $FEATURE_NAME
-git push origin develop
+test -f bin/ci && execute bin/ci;
+
+execute git fetch origin develop:develop;
+
+execute git rebase develop;
+
+execute git flow feature finish $FEATURE_NAME --fetch --keep --showcommands;
+
+execute git push origin develop;
+
+execute git flow feature delete $FEATURE_NAME --remote --showcommands;
+
+success_message Feature finished successfully.;

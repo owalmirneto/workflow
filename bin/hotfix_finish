@@ -1,10 +1,35 @@
 #!/bin/bash
 
-set -e
+set -e;
 
-bin/ci
+source functions;
 
-HOTFIX_NAME=${1}
+test -f bin/ci && execute bin/ci;
 
-bumpversion
-git flow hotfix finish -Fp $HOTFIX_NAME
+HOTFIX_BRANCH=`git rev-parse --abbrev-ref HEAD`;
+
+HOTFIX_NAME=${1};
+[ "${HOTFIX_NAME}" = '' ] && HOTFIX_NAME=${HOTFIX_BRANCH##*/v};
+
+PROJECT_NAME=$(basename -s .git `git config --get remote.origin.url`);
+
+execute git remote update -p;
+
+execute git fetch origin master:master;
+
+execute git rebase master;
+
+execute bumpversion patch;
+
+execute git checkout develop;
+execute git merge --no-ff $HOTFIX_BRANCH;
+
+execute git checkout $HOTFIX_BRANCH;
+
+execute git flow hotfix finish v$HOTFIX_NAME --message="'${PROJECT_NAME^^}'" --keep --showcommands
+
+execute git push origin develop master v${HOTFIX_NAME};
+
+execute git flow hotfix delete v${HOTFIX_BRANCH} --remote;
+
+success_message Hotfix finished successfully.;

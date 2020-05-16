@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-set -e
+set -e;
 
-echo "# Adiciona scripts do interage/git-flow ao PATH" >> ~/.bashrc
-echo "export PATH="'$PATH'":$PWD/bin" >> ~/.bashrc
+echo "" >> ~/.bashrc;
+echo "# Add scripts files of interage/workflow to PATH." >> ~/.bashrc;
+echo "export PATH=\"\$PATH:$PWD/bin\"" >> ~/.bashrc;
+
+success_message The interage/workflow setted successfully.;

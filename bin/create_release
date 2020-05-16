@@ -1,15 +1,10 @@
 #!/bin/bash
 
-set -e
+set -e;
 
-echo -e "\e[1;36m$ git checkout master \e[0m"
-git checkout master
+RELEASE_VERSION=${1};
+COMMIT_HASH=${2};
 
-RELEASE_VERSION=${1}
-COMMIT_HASH=${2}
+release_start $RELEASE_VERSION $COMMIT_HASH;
 
-echo -e "\e[1;36m$ release_start $RELEASE_VERSION $COMMIT_HASH \e[0m"
-release_start $RELEASE_VERSION $COMMIT_HASH
-
-echo -e "\e[1;36m$ release_finish $RELEASE_VERSION \e[0m"
-release_finish $RELEASE_VERSION
+release_finish;

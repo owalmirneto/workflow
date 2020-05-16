@@ -1,5 +1,9 @@
 #!/bin/bash
 
-set -e
+set -e;
 
-git flow init -d -f
+source functions;
+
+execute git flow init -fd;
+
+success_message Git flow initalized successfully.;
