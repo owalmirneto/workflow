@@ -2,8 +2,8 @@
 
 set -e;
 
-source $(dirname "$0")/functions;
+source functions;
 
 execute git flow init -fd;
 
-success_message Git flow initalized;
+success_message Git flow initalized successfully.;
