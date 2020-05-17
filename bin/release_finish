@@ -4,17 +4,20 @@ set -e;
 
 source config;
 
+NEW_VERSION=minor;
 RELEASE_VERSION=${1};
 if [ "${RELEASE_VERSION}" = '' ]; then
   CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD`;
   RELEASE_VERSION=${CURRENT_BRANCH##*/v};
+else
+  NEW_VERSION=$RELEASE_VERSION;
 fi
 
 PROJECT_NAME=$(basename -s .git `git config --get remote.origin.url`);
 
 test -f bin/ci && execute bin/ci;
 
-execute bumpversion minor;
+execute bumpversion $NEW_VERSION;
 
 execute git flow release finish v$RELEASE_VERSION --message="'${PROJECT_NAME^^}'" --showcommands;
 
