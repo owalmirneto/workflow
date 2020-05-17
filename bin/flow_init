@@ -2,7 +2,7 @@
 
 set -e;
 
-source functions;
+source config;
 
 execute git flow init -fd;
 

@@ -2,9 +2,11 @@
 
 set -e;
 
+source config;
+
 RELEASE_VERSION=${1};
 COMMIT_HASH=${2};
 
 release_start $RELEASE_VERSION $COMMIT_HASH;
 
-release_finish;
+release_finish $RELEASE_VERSION;

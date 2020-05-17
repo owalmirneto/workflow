@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+set -e;
+
+source config;
+
+ENV=$1;
+
+if [ "${ENV}" != 'production' ] && [ "${ENV}" != 'staging' ]; then
+  allow_commands restart staging,production;
+fi
+
+
+info_message Restarting $ENV server...;
+if [ "${DEPLOYMENT_WITH}" == "mina" ]; then
+  execute mina $ENV restart;
+elif [ "${DEPLOYMENT_WITH}" == "capistrano" ]; then
+  execute cap $ENV restart;
+else
+  execute heroku run restart -r $ENV;
+fi
+
+success_message ${ENV^^} server restarted successfully.;

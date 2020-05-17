@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+set -e;
+
+source config;
+
+info_message Resetuping application...;
+execute bin/setup;
+
+info_message Setting environment database...;
+execute rails db:environment:set RAILS_ENV=development;
+
+info_message Recreating local database...;
+execute rails db:drop db:create db:migrate;
+
+info_message Reseeding local database...;
+execute rails db:seed;
+
+success_message Database reseeded successfully.;

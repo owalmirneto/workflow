@@ -1,3 +1,11 @@
+Version 0.1.1:
+ - Ajusta binario da criação de versão
+ - Atualiza documentação
+ - Adicionar comandos novos para acesso de servidores via mina, capistrano ou heroku
+ - Ajusta comandos antigos
+ - Adiciona algumas configurações e função compartilhadas
+ - Atualiza documentação
+
 Version 0.1.0:
  - Ajusta scripts de criar novas versões
  - Ajusta scripts de criar e fechar feature

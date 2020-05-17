@@ -2,21 +2,21 @@
 
 set -e;
 
-source functions;
+source config;
 
 if [ -f VERSION ]; then
   V_TYPE=$1;
 
-  if [ "$1" = '' ]; then
+  if [ "$1" = "" ]; then
     allow_commands bumpversion major,minor,patch;
-  elif [ "$1" != 'major' ] && [ "$1" != 'minor' ] && [ "$1" != 'patch' ]; then
+  elif [ "$1" != "major" ] && [ "$1" != "minor" ] && [ "$1" != "patch" ]; then
     SUGGESTED_VERSION=$V_TYPE;
   fi
 
   LAST_VERSION=`cat VERSION`;
   info_message "Current version: ${LAST_VERSION}";
 
-  [ "${SUGGESTED_VERSION}" = '' ] && SUGGESTED_VERSION=`next_version $LAST_VERSION $V_TYPE`;
+  [ "${SUGGESTED_VERSION}" = "" ] && SUGGESTED_VERSION=`next_version $LAST_VERSION $V_TYPE`;
 
   read -p "Enter a version number [$SUGGESTED_VERSION]: " NEW_VERSION;
   [ "${NEW_VERSION}" = "" ] && NEW_VERSION=$SUGGESTED_VERSION;
@@ -33,7 +33,7 @@ else
   if [ "$RESPONSE" = "yes" ]; then RESPONSE="y"; fi
   if [ "$RESPONSE" = "YES" ]; then RESPONSE="y"; fi
   if [ "$RESPONSE" = "y" ]; then
-    NEW_VERSION='0.1.0'
+    NEW_VERSION="0.1.0"
     info_message "Creating version ${NEW_VERSION}";
     add_bump_files $NEW_VERSION $LAST_VERSION
     git commit -m "Cria arquivos VERSION e CHANGES da v${NEW_VERSION}";

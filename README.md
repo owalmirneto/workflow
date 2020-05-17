@@ -1,5 +1,6 @@
 ### Requerimentos
-  - [git-flow plugin](https://danielkummer.github.io/git-flow-cheatsheet/index.pt_BR.html)
+
+- [git-flow plugin](https://danielkummer.github.io/git-flow-cheatsheet/index.pt_BR.html)
 
 ### Setup
 
@@ -52,7 +53,7 @@ release_start <release-version> <commit-hash>
 Exemplo:
 
 ```bash
-release_start v0.0.1
+release_start
 ```
 
 #### Finalizar uma nova versão do projeto
@@ -64,8 +65,10 @@ release_finish <release-version>
 Exemplo:
 
 ```bash
-release_finish v0.0.1
+release_finish
 ```
+
+> PS: Precisar está no branch do release
 
 #### Criar uma nova versão do projeto
 
@@ -76,7 +79,7 @@ create_release <release-version> <commit-hash>
 Exemplo:
 
 ```bash
-create_release v0.0.1
+create_release
 ```
 
 #### Começar desenvolvimento de um hotfix
@@ -88,7 +91,7 @@ hotfix_start <hotfix-version>
 Exemplo:
 
 ```bash
-hotfix_start v0.0.2
+hotfix_start
 ```
 
 #### Finalizar desenvolvimento de um hotfix
@@ -100,5 +103,67 @@ hotfix_finish <hotfix-version>
 Exemplo:
 
 ```bash
-hotfix_finish v0.0.2
+hotfix_finish
+```
+
+> PS: Precisar está no branch do hotfix
+
+### Instalando deployment para os projetos
+
+Se pretender usar comandos de acesso ao servidor de produção e/ou staging e não
+usa heroku você vai precisar rodar:
+
+```bash
+cp `which variables` bin/variables
+```
+
+Depois é preciso alterar as variaveis, do mina e/ou capistrano de acordo com o
+projeto.
+
+#### Publicar versão
+
+```bash
+deploy <env>
+```
+
+Exemplo:
+
+```bash
+deploy staging
+```
+
+#### Reiniciar aplicação
+
+```bash
+restart <env>
+```
+
+Exemplo:
+
+```bash
+restart staging
+```
+
+#### Acessar servidor
+
+```bash
+remote_base <env>
+```
+
+Exemplo:
+
+```bash
+remote_base staging
+```
+
+#### Importar dump do banco localmente
+
+```bash
+db_restore <env>
+```
+
+Exemplo:
+
+```bash
+db_restore staging
 ```

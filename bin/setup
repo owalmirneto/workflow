@@ -6,4 +6,4 @@ echo "" >> ~/.bashrc;
 echo "# Add scripts files of interage/workflow to PATH." >> ~/.bashrc;
 echo "export PATH=\"\$PATH:$PWD/bin\"" >> ~/.bashrc;
 
-success_message The interage/workflow setted successfully.;
+echo The interage/workflow setted successfully.;

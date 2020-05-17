@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+set -e;
+
+source config;
+
+ENV=$1;
+
+if [ "${ENV}" != "production" ] && [ "${ENV}" != "staging" ]; then
+  allow_commands remote_bash staging,production;
+fi
+
+info_message Accessing the $ENV server...;
+if [ "${ENV}" != "heroku" ]; then
+  execute heroku run bash -r $ENV;
+else
+  REMOTE_USER=$REMOTE_USER_STATGING;
+  REMOTE_HOST=$REMOTE_HOST_STATGING;
+  if [ "${ENV}" == "production" ]; then
+    REMOTE_USER=$REMOTE_USER_PRODUCTION;
+    REMOTE_HOST=$REMOTE_HOST_PRODUCTION;
+  fi
+
+  execute ssh $REMOTE_USER@$REMOTE_HOST;
+fi
+
+success_message The ${ENV} bash has been canceled.;
