@@ -1,6 +1,5 @@
 #!/bin/bash
 
-CURRENT_BIN_FLODER=`dirname "$0"`;
-[ -f $PWD/bin/variables ] && CURRENT_BIN_FLODER=$PWD/bin;
-source $CURRENT_BIN_FLODER/variables;
+source variables;
+test -f $PWD/bin/variables && source $PWD/bin/variables;
 source functions;
