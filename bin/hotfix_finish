@@ -13,23 +13,12 @@ HOTFIX_NAME=${1};
 
 PROJECT_NAME=$(basename -s .git `git config --get remote.origin.url`);
 
-execute git remote update -p;
-
-execute git fetch origin master:master;
-
-execute git rebase master;
-
 execute bumpversion patch;
 
-execute git checkout develop;
-execute git merge --no-ff $HOTFIX_BRANCH;
-
-execute git checkout $HOTFIX_BRANCH;
-
-execute git flow hotfix finish v$HOTFIX_NAME --message="'${PROJECT_NAME^^}'" --keep --showcommands
+execute git flow hotfix finish v$HOTFIX_NAME --message="'${PROJECT_NAME^^}'" --fetch --keepremote --showcommands
 
 execute git push origin develop master v${HOTFIX_NAME};
 
-execute git flow hotfix delete v${HOTFIX_BRANCH} --remote;
+execute git flow hotfix delete $HOTFIX_NAME --remote
 
-success_message Hotfix finished successfully.;
+success Hotfix finished successfully.;

@@ -2,6 +2,8 @@
 
 set -e;
 
+source config;
+
 RELEASE_VERSION=${1};
 COMMIT_HASH=${2};
 

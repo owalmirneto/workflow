@@ -2,7 +2,7 @@
 
 set -e;
 
-source functions;
+source config;
 
 RELEASE_VERSION=${1};
 if [ "${RELEASE_VERSION}" = '' ]; then

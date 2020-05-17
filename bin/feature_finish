@@ -2,7 +2,7 @@
 
 set -e;
 
-source functions;
+source config;
 
 TRELLO_SLUG_CARD=${1};
 FEATURE_NAME=card-$TRELLO_SLUG_CARD;
