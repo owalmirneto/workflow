@@ -1,0 +1,66 @@
+#!/usr/bin/env bash
+
+set -e;
+
+source config;
+
+ENV=$1;
+
+if [ "${ENV}" != "local" ] && [ "${ENV}" != "staging" ] && [ "${ENV}" != "production" ]; then
+  allow_commands db_restore local,staging,production;
+fi
+
+info_message Getting application database name...
+DB_NAME=`rails r "puts ActiveRecord::Base.connection.current_database"`;
+DB_FILE="db/dumps/${DB_NAME}.sql";
+
+if [ "${ENV}" != "local" ]; then
+  info_message Generating $ENV dump...;
+  if [ "${DEPLOYMENT_WITH}" = "heroku" ]; then
+    FILE_REMOTE_URL="db/dumps/DB_${ENV^^}_URL";
+
+    if [ -f $FILE_REMOTE_URL ]; then
+      REMOTE_URL=$(cat $FILE_REMOTE_URL);
+    else
+      REMOTE_URL=$(heroku config:get DATABASE_URL -r $ENV);
+      echo $REMOTE_URL > $FILE_REMOTE_URL;
+    fi
+
+    execute pg_dump --clean --no-acl --no-owner $REMOTE_URL --file=$DB_FILE;
+  else
+    warning_message "Available only for heroku";
+    exit;
+    # REMOTE_USER=$REMOTE_USER_STATGING;
+    # REMOTE_HOST=$REMOTE_HOST_STATGING;
+    # REMOTE_DB_NAME=$REMOTE_DATABASE_STATGING;
+    # REMOTE_DUMP_PATH=$REMOTE_DUMP_PATH_STATGING;
+    # if [ "${ENV}" == "production" ]; then
+    #   REMOTE_USER=$REMOTE_USER_PRODUCTION;
+    #   REMOTE_HOST=$REMOTE_HOST_PRODUCTION;
+    #   REMOTE_DB_NAME=$REMOTE_DATABASE_PRODUCTION;
+    #   REMOTE_DUMP_PATH=$REMOTE_DUMP_PATH_PRODUCTION;
+    # fi
+    # REMOTE_DB_FILE="${REMOTE_DUMP_PATH}/${REMOTE_DB_NAME}.sql";
+    # FULL_HOST="${REMOTE_USER}@${REMOTE_HOST}";
+
+    # COMMAND_PG_DUMP="pg_dump -U ${REMOTE_USER} ${REMOTE_DB_NAME} > ${REMOTE_DB_FILE}";
+    # execute ssh $FULL_HOST "\"${COMMAND_PG_DUMP}\"";
+
+    # info_message Downloading $ENV dump...;
+    # execute scp $FULL_HOST:$REMOTE_DB_FILE $DB_FILE;
+  fi
+fi
+
+if [ ! -f $DB_FILE ]; then
+  error_message "File not found '${DB_FILE}'";
+  exit;
+fi
+
+info_message Restoring local database...;
+execute psql --username=$(id -un) --dbname=$DB_NAME --file=$DB_FILE;
+
+info_message Running migrations...;
+execute rails db:migrate;
+
+success_message Database was successfully imported from ${ENV} the server.;
+

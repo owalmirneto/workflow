@@ -1,0 +1,31 @@
+#!/bin/bash
+
+set -e;
+
+source config;
+
+ENV=$1;
+
+if [ "${ENV}" != "production" ] && [ "${ENV}" != "staging" ]; then
+  allow_commands deploy staging,production;
+fi
+
+info_message Deploying $ENV server...;
+if [ "${DEPLOYMENT_WITH}" == "mina" ]; then
+  execute mina $ENV deploy;
+elif [ "${DEPLOYMENT_WITH}" == "capistrano" ]; then
+  execute cap $ENV deploy;
+else
+  BRANCH_DESTINY="master";
+  if [ "${ENV}" == "staging" ]; then
+    BRANCH=$(git rev-parse --abbrev-ref HEAD);
+    BRANCH_DESTINY="${BRANCH}:master --force";
+  fi
+
+  execute git push $ENV $BRANCH_DESTINY;
+
+  info_message Migrating $ENV database...;
+  execute heroku run bin/rails db:migrate -r $ENV;
+fi
+
+success_message ${ENV^^} server deployed successfully.;
