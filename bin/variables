@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# DEPLOYMENT (capistrano, mina or heroku)
+#
+DEPLOYMENT_WITH="heroku"
+
+# Stages domains or IP
+#
+REMOTE_USER_STATGING="deployer";
+REMOTE_HOST_STATGING="staging.domain.com";
+REMOTE_DATABASE_STATGING="domain_staging";
+REMOTE_DUMP_PATH_STATGING="/home/deployer/dumps";
+REMOTE_USER_PRODUCTION="deployer";
+REMOTE_HOST_PRODUCTION="domain.com";
+REMOTE_DATABASE_PRODUCTION="domain_production";
+REMOTE_DUMP_PATH_PRODUCTION="/home/deployer/dumps";
+
+# Color messages
+#
+DEFAULT_COLOR="\e[0m";
+EXECUTE_COLOR="\e[1;36m";
+SUCCESS_COLOR="\e[1;32m";
+WARNING_COLOR="\e[1;33m";
+ERROR_COLOR="\e[1;31m";
+INFO_COLOR="\e[1;34m";
