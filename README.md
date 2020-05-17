@@ -1,5 +1,6 @@
 ### Requerimentos
-  - [git-flow plugin](https://danielkummer.github.io/git-flow-cheatsheet/index.pt_BR.html)
+
+- [git-flow plugin](https://danielkummer.github.io/git-flow-cheatsheet/index.pt_BR.html)
 
 ### Setup
 
@@ -67,6 +68,8 @@ Exemplo:
 release_finish
 ```
 
+> PS: Precisar está no branch do release
+
 #### Criar uma nova versão do projeto
 
 ```bash
@@ -101,4 +104,66 @@ Exemplo:
 
 ```bash
 hotfix_finish
+```
+
+> PS: Precisar está no branch do hotfix
+
+### Instalando deployment para os projetos
+
+Se pretender usar comandos de acesso ao servidor de produção e/ou staging e não
+usa heroku você vai precisar rodar:
+
+```bash
+cp `which variables` bin/variables
+```
+
+Depois é preciso alterar as variaveis, do mina e/ou capistrano de acordo com o
+projeto.
+
+#### Publicar versão
+
+```bash
+deploy <env>
+```
+
+Exemplo:
+
+```bash
+deploy staging
+```
+
+#### Reiniciar aplicação
+
+```bash
+restart <env>
+```
+
+Exemplo:
+
+```bash
+restart staging
+```
+
+#### Acessar servidor
+
+```bash
+remote_base <env>
+```
+
+Exemplo:
+
+```bash
+remote_base staging
+```
+
+#### Importar dump do banco localmente
+
+```bash
+db_restore <env>
+```
+
+Exemplo:
+
+```bash
+db_restore staging
 ```
