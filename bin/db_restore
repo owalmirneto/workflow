@@ -10,7 +10,11 @@ fi
 
 info_message Getting application database name...
 DB_NAME=`bin/rails r "puts ActiveRecord::Base.connection.current_database"`;
+<<<<<<< HEAD
 DB_FILE="db/dumps/${DB_NAME}.dump";
+=======
+DB_FILE="db/dumps/${DB_NAME}.sql";
+>>>>>>> 5cfdf5b (Ajusta cores das mensagens)
 
 if [ "${ENV}" != "local" ]; then
   if [ "${DEPLOYMENT_WITH}" = "heroku" ]; then
