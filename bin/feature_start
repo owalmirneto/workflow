@@ -5,10 +5,10 @@ set -e;
 source config;
 
 TRELLO_SLUG_CARD=${1};
-FEATURE_NAME=card-$TRELLO_SLUG_CARD;
+BRANCH_NAME=feature/card-$TRELLO_SLUG_CARD;
 
-execute git pull origin develop:develop;
+execute git checkout -b $BRANCH_NAME --track origin/develop;
 
-execute git flow feature start $FEATURE_NAME;
+execute git push -u origin $BRANCH_NAME;
 
 success_message Feature started successfully.;

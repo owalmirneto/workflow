@@ -63,4 +63,3 @@ info_message Running migrations...;
 execute rails db:migrate;
 
 success_message Database was successfully imported from ${ENV} the server.;
-
