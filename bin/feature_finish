@@ -6,20 +6,24 @@ source config;
 
 TRELLO_SLUG_CARD=${1};
 FEATURE_NAME=card-$TRELLO_SLUG_CARD;
-BRANCH_NAME=feature/$FEATURE_NAME;
+FEATURE_BRANCH=feature/$FEATURE_NAME;
 
-execute git checkout $BRANCH_NAME;
+CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD`;
+
+[ "${FEATURE_BRANCH}" = 'feature/card-' ] && FEATURE_BRANCH=$CURRENT_BRANCH;
 
 test -f bin/ci && execute bin/ci;
 
-execute git fetch origin develop:develop;
+info_message Update local branch develop;
+execute git checkout develop
+execute git pull origin develop
 
-execute git rebase develop;
-
-execute git flow feature finish $FEATURE_NAME --fetch --keep --showcommands;
-
+info_message Merging feature branch into develop;
+execute git merge --no-ff $FEATURE_BRANCH;
 execute git push origin develop;
 
-execute git flow feature delete $FEATURE_NAME --remote --showcommands;
+info_message Deleting feature branch;
+execute git branch -d $FEATURE_BRANCH;
+execute git push origin :$FEATURE_BRANCH;
 
 success_message Feature finished successfully.;
