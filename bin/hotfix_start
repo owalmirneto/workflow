@@ -4,13 +4,11 @@ set -e;
 
 source config;
 
-HOTFIX_NAME=${1};
-[[ "${1}" = '' ]] && HOTFIX_NAME=`next_version '' patch`;
+TRELLO_SLUG_CARD=${1};
+BRANCH_NAME=hotfix/card-$TRELLO_SLUG_CARD;
 
-execute git pull origin master:master;
+execute git checkout -b $BRANCH_NAME --track origin/master;
 
-execute git flow hotfix start v$HOTFIX_NAME;
-
-execute git flow hotfix publish v$HOTFIX_NAME;
+execute git push -u origin $BRANCH_NAME;
 
 success_message Hotfix started successfully.;
