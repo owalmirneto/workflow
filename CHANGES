@@ -1,4 +1,12 @@
 Version 0.1.2:
+ - Remove dependecia do gitflow para criar e finalizar hotfix
+ - Remove dependecia do gitflow para fechar feature
+ - Ajusta script de baixar banco do heroku
+ - Remove dependecia do gitflow para criar feature
+ - Muda forma de upcase no finish de hotfix e release
+ - Ajusta cores das mensagens
+
+Version 0.1.2:
  - Ajusta inclusão do arquivo de variaveis
 
 Version 0.1.1:
