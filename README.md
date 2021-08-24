@@ -1,6 +1,7 @@
 ### Requerimentos
 
 - [git-flow plugin](https://danielkummer.github.io/git-flow-cheatsheet/index.pt_BR.html)
+- [GitHub CLI](https://cli.github.com)
 
 ### Setup
 

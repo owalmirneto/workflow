@@ -1,14 +1,8 @@
-#!/bin/bash
+#!/bin/env ruby
+# frozen_string_literal: true
 
-set -e;
+require_relative '../config/application'
 
-source config;
+info_message("Let's start this feature")
 
-TRELLO_SLUG_CARD=${1};
-BRANCH_NAME=feature/card-$TRELLO_SLUG_CARD;
-
-execute git checkout -b $BRANCH_NAME --track origin/develop;
-
-execute git push -u origin $BRANCH_NAME;
-
-success_message Feature started successfully.;
+FeatureStartCLI.start(ARGV)

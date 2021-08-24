@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -e;
+
+echo "" >> ~/.bashrc;
+echo "# Add scripts files of interage/workflow to PATH." >> ~/.bashrc;
+echo "export PATH=\"\$PATH:$PWD/bin\"" >> ~/.bashrc;
+
+echo The interage/workflow setted successfully.;
