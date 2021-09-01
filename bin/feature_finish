@@ -5,12 +5,12 @@ set -e;
 source config;
 
 TRELLO_SLUG_CARD=${1};
-FEATURE_NAME=card-$TRELLO_SLUG_CARD;
-FEATURE_BRANCH=feature/$FEATURE_NAME;
+FEATURE_NAME=$TRELLO_SLUG_CARD;
+FEATURE_BRANCH=$FEATURE_NAME;
 
 CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD`;
 
-[ "${FEATURE_BRANCH}" = 'feature/card-' ] && FEATURE_BRANCH=$CURRENT_BRANCH;
+[ "${FEATURE_BRANCH}" = '' ] && FEATURE_BRANCH=$CURRENT_BRANCH;
 
 test -f bin/ci && execute bin/ci;
 

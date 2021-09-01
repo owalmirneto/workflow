@@ -3,6 +3,6 @@
 
 require_relative '../config/application'
 
-info_message("Let's start this feature")
+info_message("Let's start the code review")
 
-FeatureStartCLI.start(ARGV)
+PRStartCLI.start(ARGV)
