@@ -1,18 +1,30 @@
+# Interage/workflow
+
 ### Requerimentos
 
 - [git-flow plugin](https://danielkummer.github.io/git-flow-cheatsheet/index.pt_BR.html)
 - [GitHub CLI](https://cli.github.com)
+- [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
 
-### Setup
+### Instalação
 
 ```bash
-bin/setup
+bin/install
+```
+
+Ou adicione ao arquivo de configuração do seu shell (~/.bashrc, ~/.zshrc ou ~/.bash_profile):
+
+```bash
+SHELL_CONFIG_FILE=~/.zshrc
+echo "" >> $SHELL_CONFIG_FILE;
+echo "# Add scripts files of Interage/workflow to PATH." >> $SHELL_CONFIG_FILE;
+echo "export PATH=\"\$PATH:$PWD/bin\"" >> $SHELL_CONFIG_FILE;
 ```
 
 E depois:
 
 ```bash
-source ~/.bashrc
+source $SHELL_CONFIG_FILE
 ```
 
 ### Configurar flow na aplicação
@@ -24,13 +36,13 @@ flow_init
 #### Começar desenvolvimento de uma nova feature
 
 ```bash
-feature_start <path-trello-card>
+feature_start <Jira issue code> <Jira issue title>
 ```
 
 Exemplo:
 
 ```bash
-feature_start 000-titulo-do-card
+feature_start CJ 123 Create upload avatar
 ```
 
 #### Finalizar desenvolvimento de uma feature

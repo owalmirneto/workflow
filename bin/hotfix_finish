@@ -21,24 +21,15 @@ execute git push origin master;
 execute git branch -d $BRANCH_NAME;
 execute git push origin :$BRANCH_NAME;
 
-<<<<<<< HEAD
-execute bumpversion patch;
-execute git push origin master;
-=======
 message=$(echo $PROJECT_NAME | tr '[a-z]' '[A-Z]')
 
 execute git flow hotfix finish v$HOTFIX_NAME --message="'${message}'" --fetch --keepremote --showcommands
->>>>>>> b94e520 (Muda forma de upcase no finish de hotfix e release)
 
 execute git tag -a $TAG_NAME; # -m "${PROJECT_NAME} ${TAG_NAME}" # --no-edit
 execute git push origin $TAG_NAME;
 
-<<<<<<< HEAD
 execute git checkout develop;
 execute git merge --no-ff $TAG_NAME;
 execute git push origin develop;
-=======
-execute git flow hotfix delete v$HOTFIX_NAME --remote
->>>>>>> 5cfdf5b (Ajusta cores das mensagens)
 
 success_message Hotfix finished successfully.;

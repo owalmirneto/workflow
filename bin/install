@@ -1,9 +1,15 @@
-#!/usr/bin/env bash
+#!/usr/bin/env ruby
+# frozen_string_literal: true
 
-set -e;
+require_relative '../config/application'
 
-echo "" >> ~/.bashrc;
-echo "# Add scripts files of interage/workflow to PATH." >> ~/.bashrc;
-echo "export PATH=\"\$PATH:$PWD/bin\"" >> ~/.bashrc;
+info_message('Install workflow')
 
-echo The interage/workflow setted successfully.;
+PWD = `pwd`.strip
+SHELL_NAME = `echo $SHELL`.strip.split('/').last
+SHELL_CONFIG_FILE = SHELL_NAME == 'zsh' ? '~/.zshrc' : '~/.bashrc'
+
+WORKFLOW_SCRIPTS = ["\n# Add scripts files of interage/workflow to PATH.",
+                    "export PATH=\"\$PATH:#{PWD}/bin\""].join("\n")
+
+execute("echo '#{WORKFLOW_SCRIPTS}' >> #{SHELL_CONFIG_FILE}")

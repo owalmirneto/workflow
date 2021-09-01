@@ -11,7 +11,7 @@ def execute_message(text)
 end
 
 def success_message(text)
-  message("\n✓ #{text}".green)
+  message("\n✔ #{text}".green)
 end
 
 def warning_message(text)
@@ -23,7 +23,7 @@ def error_message(text)
 end
 
 def info_message(text)
-  message("> #{text}".blue)
+  message("❯ #{text}".blue)
 end
 
 def message(text)
