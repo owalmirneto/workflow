@@ -109,32 +109,6 @@ Exemplo:
 create_release
 ```
 
-#### Começar desenvolvimento de um hotfix
-
-```bash
-hotfix_start <hotfix-version>
-```
-
-Exemplo:
-
-```bash
-hotfix_start
-```
-
-#### Finalizar desenvolvimento de um hotfix
-
-```bash
-hotfix_finish <hotfix-version>
-```
-
-Exemplo:
-
-```bash
-hotfix_finish
-```
-
-> PS: Precisar está no branch do hotfix
-
 ### Instalando deployment para os projetos
 
 Se pretender usar comandos de acesso ao servidor de produção e/ou staging e não
