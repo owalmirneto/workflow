@@ -27,7 +27,7 @@ E depois:
 source $SHELL_CONFIG_FILE
 ```
 
-### Configurar flow na aplicação
+### Configurar flow por aplicação
 
 ```bash
 flow_init
@@ -38,14 +38,26 @@ flow_init
 #### Começar desenvolvimento de uma nova feature
 
 ```bash
-feature_start <Jira issue code> <Jira issue title>
+feature_start [Título completo da tarefa]
 ```
 
 Exemplo:
 
 ```bash
-feature_start CJ 123 Create upload avatar
+feature_start CODE 123 Create upload avatar
 ```
+
+> Será criado um branch com o nome `CODE-123-Create-upload-avatar` a partir do branch `origin/develop`
+
+#### Enviar feature para o code review
+
+Esse comando só é suportado para o [GitHub.com](https://github.com)
+
+```bash
+pr_start
+```
+
+> Será criado o PR no github usando GitHub CLI com o título "**CODE 123 Create upload avatar**"
 
 #### Finalizar desenvolvimento de uma feature
 
