@@ -12,7 +12,7 @@
 bin/install
 ```
 
-Ou adicione ao arquivo de configuração do seu shell (~/.bashrc, ~/.zshrc ou ~/.bash_profile):
+Ou adicione ao arquivo de configuração do seu shell (\~/.bashrc, \~/.zshrc ou \~/.bash_profile):
 
 ```bash
 SHELL_CONFIG_FILE=~/.zshrc
@@ -32,6 +32,8 @@ source $SHELL_CONFIG_FILE
 ```bash
 flow_init
 ```
+
+> Esse comando tem que ser rodado em todos os projetos por todos os devevolvedores
 
 #### Começar desenvolvimento de uma nova feature
 
