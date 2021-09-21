@@ -2,6 +2,7 @@
 
 require 'rubygems'
 require 'bundler'
+require 'colorize'
 
 APP_ROOT = File.expand_path('..', __dir__)
 
