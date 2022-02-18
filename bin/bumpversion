@@ -25,6 +25,7 @@ if [ -f VERSION ]; then
   add_bump_files $NEW_VERSION $LAST_VERSION
   git commit -m "Atualiza arquivos VERSION e CHANGES da v${NEW_VERSION}";
 else
+  touch CHANGES;
   info_message "Could not find a VERSION file";
   read -p "Do you want to create a version file and start from scratch? [y]" RESPONSE;
   if [ "$RESPONSE" = "" ]; then RESPONSE="y"; fi

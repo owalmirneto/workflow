@@ -14,13 +14,13 @@ class FeatureStartCLI < ApplicationCLI
   end
 
   def branch_name
-    @branch_name ||= feature_title.to_s.split.join('-')
+    @branch_name ||= feature_title.split.join('-')
   end
 
   def feature_title
     return question('Type title card:') if @title == ''
 
-    @feature_title ||= @title
+    @feature_title ||= @title.to_s
   end
 
   def feedback

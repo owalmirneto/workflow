@@ -1,37 +1,63 @@
+# Interage/workflow
+
 ### Requerimentos
 
 - [git-flow plugin](https://danielkummer.github.io/git-flow-cheatsheet/index.pt_BR.html)
 - [GitHub CLI](https://cli.github.com)
+- [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
 
-### Setup
+### Instalação
 
 ```bash
-bin/setup
+bin/install
+```
+
+Ou adicione ao arquivo de configuração do seu shell (\~/.bashrc, \~/.zshrc ou \~/.bash_profile):
+
+```bash
+SHELL_CONFIG_FILE=~/.zshrc
+echo "" >> $SHELL_CONFIG_FILE;
+echo "# Add scripts files of Interage/workflow to PATH." >> $SHELL_CONFIG_FILE;
+echo "export PATH=\"\$PATH:$PWD/bin\"" >> $SHELL_CONFIG_FILE;
 ```
 
 E depois:
 
 ```bash
-source ~/.bashrc
+source $SHELL_CONFIG_FILE
 ```
 
-### Configurar flow na aplicação
+### Configurar flow por aplicação
 
 ```bash
 flow_init
 ```
 
+> Esse comando tem que ser rodado em todos os projetos por todos os devevolvedores
+
 #### Começar desenvolvimento de uma nova feature
 
 ```bash
-feature_start <path-trello-card>
+feature_start [Título completo da tarefa]
 ```
 
 Exemplo:
 
 ```bash
-feature_start 000-titulo-do-card
+feature_start CODE 123 Create upload avatar
 ```
+
+> Será criado um branch com o nome `CODE-123-Create-upload-avatar` a partir do branch `origin/develop`
+
+#### Enviar feature para o code review
+
+Esse comando só é suportado para o [GitHub.com](https://github.com)
+
+```bash
+pr_start
+```
+
+> Será criado o PR no github usando GitHub CLI com o título "**CODE 123 Create upload avatar**"
 
 #### Finalizar desenvolvimento de uma feature
 
@@ -82,32 +108,6 @@ Exemplo:
 ```bash
 create_release
 ```
-
-#### Começar desenvolvimento de um hotfix
-
-```bash
-hotfix_start <hotfix-version>
-```
-
-Exemplo:
-
-```bash
-hotfix_start
-```
-
-#### Finalizar desenvolvimento de um hotfix
-
-```bash
-hotfix_finish <hotfix-version>
-```
-
-Exemplo:
-
-```bash
-hotfix_finish
-```
-
-> PS: Precisar está no branch do hotfix
 
 ### Instalando deployment para os projetos
 

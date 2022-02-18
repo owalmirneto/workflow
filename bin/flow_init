@@ -1,9 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env ruby
+# frozen_string_literal: true
 
-set -e;
+require_relative '../config/application'
 
-source config;
-
-execute git flow init -fd;
-
-success_message Git flow initalized successfully.;
+FlowInitCLI.start(ARGV)
